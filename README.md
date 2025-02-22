@@ -77,4 +77,23 @@ Face Analysis App은 사용자가 손쉽게 자신의 얼굴을 촬영하고,
 
 ## 스크린 샷 🖼️
 
+---
+
+## 제작 기간 ⏱️
+
+- **개발 기간:** 2/12 ~ 2/22
+
+---
+
+## 저작권 및 라이선스 ⚖️
+
+- **Guide 화면 아이콘:**  
+  - 이 앱의 Guide 화면 아이콘은 **Grand Iconic**이 제작하였습니다.  
+  - 아이콘의 저작권은 해당 아이콘 제작자에게 있으며, 사용 조건은 제작자의 라이선스 정책을 따릅니다.
+
+- **Pretendard 폰트:**  
+  - 본 프로젝트에서 사용된 Pretendard 폰트는 **SIL Open Font License 1.1**에 따라 배포됩니다.  
+  - Pretendard 폰트의 원 저작권은 [Pretendard GitHub 리포지터리](https://github.com/orioncactus/pretendard)를 참고하시기 바랍니다.
+
+
 
