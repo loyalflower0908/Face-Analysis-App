@@ -73,6 +73,75 @@ Face Analysis App은 사용자가 손쉽게 자신의 얼굴을 촬영하고,
 - **네비게이션 및 데이터 직렬화:**  
   - Compose Navigation, Kotlinx Serialization
 
+ ---
+
+## 구조
+
+```kotlin
+FaceAnalysisApp/
+├── data
+│   ├── manager
+│   │   ├── CameraManager.kt         // 카메라 초기화, 미리보기, 이미지 촬영 관리
+│   │   └── FileManager.kt           // Bitmap 파일 저장 및 임시 파일 정리
+│   ├── mapper
+│   │   ├── ImageUploadResponseMapper.kt  // ImageUploadResponse → ImageUploadResult 변환
+│   │   ├── LoginResponseMapper.kt        // LoginResponse → LoginResult 변환
+│   │   └── UserAttributeResponseMapper.kt// UserAttributeResponse → UserAttributeResult 변환
+│   ├── network
+│   │   ├── ApiService.kt            // 이미지 업로드, 로그인, 사용자 속성 조회 API 인터페이스
+│   │   └── dto                      // 서버 응답 DTO (ImageUploadResponse.kt, LoginResponse.kt, UserAttributeResponse.kt)
+│   └── repository
+│       ├── ImageUploadRepositoryImpl.kt
+│       ├── LoginRepositoryImpl.kt
+│       └── UserAttributesRepositoryImpl.kt
+├── domain
+│   ├── model
+│   │   ├── ImageUploadResult.kt     // 이미지 업로드 결과 (Success, Error)
+│   │   ├── LoginResult.kt           // 로그인 결과 (Success, Error)
+│   │   ├── UserAttribute.kt         // 사용자 속성 데이터 (lastUpdateTs, key, value / gender, age, emotion, race 등에 사용)
+│   │   └── UserAttributeResult.kt   // 사용자 속성 조회 결과 (Success, Error)
+│   ├── repository
+│   │   ├── ImageUploadRepository.kt // 이미지 업로드 관련 인터페이스
+│   │   ├── LoginRepository.kt       // 로그인 관련 인터페이스
+│   │   └── UserAttributesRepository.kt // 사용자 속성 조회 관련 인터페이스
+│   └── usecase
+│       ├── ImageUploadUseCase.kt    // 이미지 업로드 유스케이스
+│       ├── LoginUseCase.kt          // 로그인 유스케이스
+│       └── FetchUserAttributesUseCase.kt // 사용자 속성 조회 유스케이스
+├── di
+│   └── AppModule.kt                 // Dagger Hilt 의존성 주입 모듈 (Retrofit, ApiService, Repository, Manager, EventBus 등 제공)
+├── presentation
+│   ├── bus
+│   │   ├── EventBus.kt              // ViewModel 간 이벤트 전달 인터페이스
+│   │   ├── EventBusImpl.kt          // EventBus 기본 구현체 (MutableSharedFlow 활용)
+│   │   └── SharedEvent.kt           // 공유 이벤트 (예: 이미지 촬영 이벤트)
+│   ├── view
+│   │   ├── camera
+│   │   │   ├── CameraScreen.kt      // 카메라 화면 UI (미리보기, 촬영, 가이드 오버레이)
+│   │   │   └── ui                   // 카메라 화면에 사용되는 UI 컴포넌트 (CameraGuideOverlay.kt, CameraPreview.kt, CameraShutterButton.kt, RequestCameraPermission.kt)
+│   │   ├── result
+│   │   │   ├── ResultScreen.kt      // 결과 화면 UI (분석 결과 표시 및 뒤로가기 버튼)
+│   │   │   └── ui                   // 결과 화면 UI 컴포넌트 (TitleBox.kt, Section.kt, BackButton.kt)
+│   │   ├── navigation
+│   │   │   ├── NavGraph.kt          // Compose Navigation 그래프 (CameraScreen, ResultScreen 간 네비게이션)
+│   │   │   ├── NavigationUtil.kt    // 확장 함수 (예: List<UserAttribute>.toResultRoute())
+│   │   │   └── Routes.kt            // 네비게이션 경로 모음
+│   │   └── theme
+│   │       ├── Color.kt                 // 앱 전반에 사용되는 색상 정의
+│   │       ├── Dimens.kt                // 사이즈, 패딩 등 Material Design 가이드에 따른 치수 정의
+│   │       └── Typography.kt            // 텍스트 스타일 정의 (폰트, 스타일, 크기 등)
+│   └── viewmodel
+│       ├── api
+│       │   ├── ApiViewModel.kt      // API 통신 및 인증 관련 로직 관리
+│       │   └── ApiUiState.kt        // API 통신 상태 정의 (Initial, Loading, Success, Error)
+│       └── camera
+│           ├── CameraViewModel.kt   // 카메라 제어 및 이미지 촬영 관련 로직 관리
+│           └── CameraUiState.kt     // 카메라 UI 상태 정의 (Initial, Preview, Error)
+├── MyApp.kt                         // Hilt 적용 Application 클래스 (Timber 초기화 포함)
+└── MainActivity.kt                  // 앱 시작 Activity (Edge-to-Edge 모드, Navigation 실행)
+
+```
+
 ---
 
 ## 스크린 샷 🖼️
