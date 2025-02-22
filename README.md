@@ -73,20 +73,7 @@ Face Analysis App은 사용자가 손쉽게 자신의 얼굴을 촬영하고,
 - **네비게이션 및 데이터 직렬화:**  
   - Compose Navigation, Kotlinx Serialization
 
----
-
-## 스크린 샷 🖼️
-
-| <img src="https://github.com/user-attachments/assets/370e55ce-7825-4d7b-a611-5e7ae310e6f5" width="200">   | <img src="https://github.com/user-attachments/assets/52dcf7b2-cf6a-414b-abe7-aaf4db5199b6" width="200"> | <img src="https://github.com/user-attachments/assets/79b41446-5228-4f72-84e4-bf422c9412e6" width="200"> |  
-| :----------------------------------------------:  | :----------------------------------------------: | :----------------------------------------------: |  
-|                 촬영 가이드 화면                  |         촬영 화면(AI 생성 30대 남성 사진)         |                  분석 결과 화면                   |  
-
-
-| <img src="https://github.com/user-attachments/assets/a4f592b9-a936-4934-bb75-e2a1d892a151" width="200">   | <img src="https://github.com/user-attachments/assets/07449ec3-6169-4965-a5a7-a2c4e0363cfd" width="200"> | <img src="https://github.com/user-attachments/assets/e9944b3e-610c-475c-8454-9af2a53861fb" width="400"> |  
-| :----------------------------------------------:  | :----------------------------------------------: | :----------------------------------------------: |  
-|                   촬영 화면                       |                   분석 결과 화면                  |       사진 출처: GPT에서 DALL·E 3 모델           |  
-
----
+ ---
 
 ## 구조
 
@@ -154,6 +141,19 @@ FaceAnalysisApp/
 └── MainActivity.kt                  // 앱 시작 Activity (Edge-to-Edge 모드, Navigation 실행)
 
 ```
+
+---
+
+## 스크린 샷 🖼️
+
+| <img src="https://github.com/user-attachments/assets/370e55ce-7825-4d7b-a611-5e7ae310e6f5" width="200">   | <img src="https://github.com/user-attachments/assets/52dcf7b2-cf6a-414b-abe7-aaf4db5199b6" width="200"> | <img src="https://github.com/user-attachments/assets/79b41446-5228-4f72-84e4-bf422c9412e6" width="200"> |  
+| :----------------------------------------------:  | :----------------------------------------------: | :----------------------------------------------: |  
+|                 촬영 가이드 화면                  |         촬영 화면(AI 생성 30대 남성 사진)         |                  분석 결과 화면                   |  
+
+
+| <img src="https://github.com/user-attachments/assets/a4f592b9-a936-4934-bb75-e2a1d892a151" width="200">   | <img src="https://github.com/user-attachments/assets/07449ec3-6169-4965-a5a7-a2c4e0363cfd" width="200"> | <img src="https://github.com/user-attachments/assets/e9944b3e-610c-475c-8454-9af2a53861fb" width="400"> |  
+| :----------------------------------------------:  | :----------------------------------------------: | :----------------------------------------------: |  
+|                   촬영 화면                       |                   분석 결과 화면                  |       사진 출처: GPT에서 DALL·E 3 모델           |  
 
 ---
 
