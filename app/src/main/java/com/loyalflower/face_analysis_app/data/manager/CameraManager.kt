@@ -76,7 +76,7 @@ class CameraManager @Inject constructor(
         }
 
         val cameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK) // 전면 카메라 선택
+            .requireLensFacing(CameraSelector.LENS_FACING_FRONT) // 전면 카메라 선택
             .build()
 
         imageCapture = ImageCapture.Builder()
