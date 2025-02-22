@@ -1,6 +1,6 @@
 # Face Analysis App 📸✨
 
-**Face Analysis App**은 사용자의 얼굴 이미지를 촬영하여 서버에 업로드하고,
+**Face Analysis App**은 사용자의 얼굴 이미지를 촬영하여 서버([Face Analysis Sever](https://github.com/loyalflower0908/Face-Analysis-Server))에 업로드하고,
 
 사진 분석 결과(성별, 나이, 감정, 인종 등)를 실시간으로 확인할 수 있는 Android 애플리케이션입니다.
 
