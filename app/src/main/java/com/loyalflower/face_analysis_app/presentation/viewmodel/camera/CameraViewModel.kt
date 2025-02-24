@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.loyalflower.face_analysis_app.data.manager.CameraManager
 import com.loyalflower.face_analysis_app.data.manager.FileManager
-import com.loyalflower.face_analysis_app.presentation.bus.EventBus
+import com.loyalflower.face_analysis_app.presentation.bus.EventFlow
 import com.loyalflower.face_analysis_app.presentation.bus.SharedEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,13 +29,13 @@ import javax.inject.Inject
  *
  * @param cameraManager 카메라 제어를 담당하는 [CameraManager]
  * @param fileManager 촬영된 이미지를 저장하는 [FileManager]
- * @param eventBus 이벤트 공유를 위한 [EventBus] (사진 촬영 완료 이벤트 전송)
+ * @param eventFlow 이벤트 공유를 위한 [EventFlow] (사진 촬영 완료 이벤트 전송)
  */
 @HiltViewModel
 class CameraViewModel @Inject constructor(
     private val cameraManager: CameraManager,
     private val fileManager: FileManager,
-    private val eventBus: EventBus
+    private val eventFlow: EventFlow
 ) : ViewModel() {
 
     /**
@@ -85,7 +85,7 @@ class CameraViewModel @Inject constructor(
 
     /**
      * **사진을 촬영하고 저장**
-     * - 촬영 후 파일로 변환하여 [EventBus]를 통해 전송
+     * - 촬영 후 파일로 변환하여 [EventFlow]를 통해 전송
      */
     fun takePhoto() {
         viewModelScope.launch {
@@ -94,7 +94,7 @@ class CameraViewModel @Inject constructor(
                     viewModelScope.launch(Dispatchers.IO) {
                         try {
                             val file = fileManager.saveBitmapToFile(bitmap) // 촬영된 이미지 저장
-                            eventBus.emit(SharedEvent.ImageCaptured(file)) // 저장된 파일을 EventBus로 전달
+                            eventFlow.emit(SharedEvent.ImageCaptured(file)) // 저장된 파일을 EventBus로 전달
                         } catch (e: Exception) {
                             _cameraState.value = CameraUiState.Error("파일 저장 실패: ${e.localizedMessage}")
                         }

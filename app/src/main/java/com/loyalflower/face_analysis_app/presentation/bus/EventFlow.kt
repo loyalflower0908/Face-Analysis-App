@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharedFlow
  * [SharedFlow]를 사용하여 이벤트 스트림을 관리하며,
  * ViewModel 간의 느슨한 결합을 가능하게 합니다.
  */
-interface EventBus {
+interface EventFlow {
     /**
      * 구독 가능한 이벤트 스트림
      *

@@ -9,7 +9,7 @@ import com.loyalflower.face_analysis_app.domain.model.UserAttributeResult
 import com.loyalflower.face_analysis_app.domain.usecase.FetchUserAttributesUseCase
 import com.loyalflower.face_analysis_app.domain.usecase.ImageUploadUseCase
 import com.loyalflower.face_analysis_app.domain.usecase.LoginUseCase
-import com.loyalflower.face_analysis_app.presentation.bus.EventBus
+import com.loyalflower.face_analysis_app.presentation.bus.EventFlow
 import com.loyalflower.face_analysis_app.presentation.bus.SharedEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * **인증 관련 ViewModel [ApiViewModel]**
  * - 사용자 인증 및 데이터 조회를 관리하는 ViewModel
- * - [EventBus]를 통해 'CameraViewModel' 과 통신하여 이미지를 받아 업로드 후 인증 프로세스를 진행
+ * - [EventFlow]를 통해 'CameraViewModel' 과 통신하여 이미지를 받아 업로드 후 인증 프로세스를 진행
  * - 상태 관리를 위해 [ApiUiState]를 사용하여 UI와 연동
  */
 @HiltViewModel
@@ -31,7 +31,7 @@ class ApiViewModel @Inject constructor(
     private val uploadImageUseCase: ImageUploadUseCase,
     private val loginUseCase: LoginUseCase,
     private val fetchUserAttributesUseCase: FetchUserAttributesUseCase,
-    private val eventBus: EventBus
+    private val eventFlow: EventFlow
 ) : ViewModel() {
 
     /**
@@ -44,7 +44,7 @@ class ApiViewModel @Inject constructor(
     init {
         // ✅ EventBus를 구독하여 이미지 촬영 이벤트를 감지하고 업로드 실행
         viewModelScope.launch {
-            eventBus.events.collect { event ->
+            eventFlow.events.collect { event ->
                 when (event) {
                     is SharedEvent.ImageCaptured -> uploadImage(event.file)
                 }

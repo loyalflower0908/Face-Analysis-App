@@ -9,8 +9,8 @@ import com.loyalflower.face_analysis_app.data.repository.UserAttributesRepositor
 import com.loyalflower.face_analysis_app.domain.repository.ImageUploadRepository
 import com.loyalflower.face_analysis_app.domain.repository.LoginRepository
 import com.loyalflower.face_analysis_app.domain.repository.UserAttributesRepository
-import com.loyalflower.face_analysis_app.presentation.bus.EventBus
-import com.loyalflower.face_analysis_app.presentation.bus.EventBusImpl
+import com.loyalflower.face_analysis_app.presentation.bus.EventFlow
+import com.loyalflower.face_analysis_app.presentation.bus.EventFlowImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -122,11 +122,11 @@ object AppModule {
     /**
      * EventBus 인스턴스를 제공합니다.
      * 공유 이벤트 관리를 위한 구현체 제공
-     * @return [EventBus] 구현체 [EventBusImpl]
+     * @return [EventFlow] 구현체 [EventFlowImpl]
      */
     @Provides
     @Singleton
-    fun provideEventBus(): EventBus {
-        return EventBusImpl()
+    fun provideEventBus(): EventFlow {
+        return EventFlowImpl()
     }
 }

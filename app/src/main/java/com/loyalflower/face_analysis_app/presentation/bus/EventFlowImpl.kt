@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asSharedFlow
  * [MutableSharedFlow]를 사용하여 이벤트를 관리하고,
  * 외부에는 읽기 전용 [SharedFlow]로 노출합니다.
  */
-class EventBusImpl : EventBus {
+class EventFlowImpl : EventFlow {
     private val _events = MutableSharedFlow<SharedEvent>()
     override val events = _events.asSharedFlow()
 
